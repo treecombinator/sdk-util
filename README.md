@@ -13,7 +13,7 @@ The **utilities** of the Tree Combinator SDK — small, pure, isomorphic helpers
 ## Install
 
 ```bash
-npm install github:treecombinator/sdk-util
+givo add @treecombinator/sdk-util
 ```
 
 ## Use

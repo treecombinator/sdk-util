@@ -29,6 +29,7 @@
     "url": "git+https://github.com/treecombinator/sdk-util.git"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.givo.dev/npm/"
   }
 }
