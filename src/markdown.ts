@@ -33,13 +33,17 @@ function outsideFences(md: string, transform: (text: string) => string): string 
       plain = [];
     }
   };
+  // A fence is a run of 3+ backticks or tildes; only a run of the same character at least as
+  // long as the opener closes it, so ``` inside a ```` block stays part of the code sample.
+  const fenceRun = (line: string) => /^(`{3,}|~{3,})/.exec(line.trimStart())?.[1];
   for (const line of md.split("\n")) {
     if (fence) {
       out.push(line);
-      if (line.trimStart().startsWith(fence)) fence = null;
+      const run = fenceRun(line);
+      if (run && run[0] === fence[0] && run.length >= fence.length) fence = null;
       continue;
     }
-    const open = /^(```|~~~)/.exec(line.trimStart())?.[1];
+    const open = fenceRun(line);
     if (open) {
       flush();
       fence = open;
